@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router";
+import { GlobalStyles } from "./index.styles";
+import { AuthLayout } from "./layouts/AuthLayout";
+import { RoleLayout } from "./layouts/RoleLayout";
+import { AdminPanel } from "./pages/AdminPanel";
+import { Auth } from "./pages/Auth";
+import { Main } from "./pages/Main";
+import { NotFound } from "./pages/NotFound";
+import { Project } from "./pages/Project";
+import { Projects } from "./pages/Projects";
+import { Register } from "./pages/Register";
+import {
+  ADMIN_PAGE_URL,
+  AUTH_URL,
+  MAIN_URL,
+  PROJECTS_URL,
+  PROJECT_URL,
+  REGISTER_URL,
+} from "./types/consts/routing";
 
-function App() {
+export const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyles />
+      <Routes>
+        <Route path={MAIN_URL} element={<AuthLayout />}>
+          <Route index element={<Main />} />
+          <Route path={PROJECTS_URL} element={<Projects />} />
+          <Route path={PROJECT_URL} element={<Project />} />
+          <Route path={ADMIN_PAGE_URL} element={<RoleLayout />}>
+            <Route index element={<AdminPanel />} />
+          </Route>
+        </Route>
+        <Route path={AUTH_URL} element={<Auth />} />
+        <Route path={REGISTER_URL} element={<Register />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
-}
-
-export default App;
+};
