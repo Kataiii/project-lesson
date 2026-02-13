@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router";
+import { AuthProvider } from "./context/AuthContext";
 import { GlobalStyles } from "./index.styles";
 import { AuthLayout } from "./layouts/AuthLayout";
 import { RoleLayout } from "./layouts/RoleLayout";
@@ -20,7 +21,7 @@ import {
 
 export const App: React.FC = () => {
   return (
-    <>
+    <AuthProvider>
       <GlobalStyles />
       <Routes>
         <Route path={MAIN_URL} element={<AuthLayout />}>
@@ -35,6 +36,6 @@ export const App: React.FC = () => {
         <Route path={REGISTER_URL} element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-    </>
+    </AuthProvider>
   );
 };
