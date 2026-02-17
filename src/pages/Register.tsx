@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Button from "../components/Button/Button";
 import { useAuth } from "../context/AuthContext";
 import { AUTH_URL } from "../types/consts/routing";
 
@@ -43,7 +44,13 @@ export const Register: React.FC = () => {
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <button type="submit">Зарегистрироваться</button>
+      <Button
+        type="submit"
+        size="medium"
+        variant="primary"
+        text="Зарегистрироваться"
+        onClick={() => console.log("Данные успешно отправлены")}
+      />
     </form>
   );
 };

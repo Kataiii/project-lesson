@@ -54,6 +54,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       email: email,
       password: password,
     });
+
+    // const [page, setPage] = useState<number>(1);
+    // const items = await axiosClient.get(`/items?page=${3}&limit=${25}&sort_name=${'ASC'}`) // DESC
   };
 
   const logout = () => {
